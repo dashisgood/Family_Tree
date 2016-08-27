@@ -230,26 +230,29 @@ class MainWindow(object):
 		
 		fields = (
 
-				('First Name', self.fname),
-				('Middle Name: ', self.mname),
-				('Last Name: ', self.lname),
-				('Birth Name: ', self.bname),
-				('Date of birth: ', self.dob),
-				('Date of death: ', self.dod),
-				('Place of birth: ', self.pob),
-				('Marriage Date: ', self.dom),
+				['First Name', self.fname],
+				['Middle Name: ', self.mname],
+				['Last Name: ', self.lname],
+				['Birth Name: ', self.bname],
+				['Date of birth: ', self.dob],
+				['Date of death: ', self.dod],
+				['Place of birth: ', self.pob],
+				['Marriage Date: ', self.dom],
 
 
 				)
 
 
 
-		for i in xrange(len(fields)):
+		for index, item in enumerate(fields):
 
-			lbl = tk.Label(self.datafields_frame, font=self.TITLEFONT, bg=self.BGCOLOR, text=fields[i][0])
-			lbl.grid(column=0, row=i)
-			entry = tk.Entry(self.datafields_frame, font=self.REGFONT, bg=self.BGCOLOR, width=30, textvariable=fields[i][1])
-			entry.grid(column=1, row=i, pady=3)
+			lbl = tk.Label(self.datafields_frame, font=self.TITLEFONT, bg=self.BGCOLOR, text=item[0])
+			item.append(lbl)
+			lbl.grid(column=0, row=index)
+			entry = tk.Entry(self.datafields_frame, font=self.REGFONT, bg=self.BGCOLOR, width=30, textvariable=item[1])
+			entry.grid(column=1, row=index, pady=3)
+			item.append(entry)
+
 			entry.bind('<KeyRelease>', self.save_fields)
 
 		lbl = tk.Label(self.datafields_frame, font=self.TITLEFONT, bg=self.BGCOLOR, text='Notes:            ')
