@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.7
+
 import Tkinter as tk
 import tkFileDialog	
 
