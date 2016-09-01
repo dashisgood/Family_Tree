@@ -1,7 +1,8 @@
 #!/usr/bin/env python2.7
 
 import Tkinter as tk
-import tkFileDialog	
+import tkFileDialog
+import json	
 
 
 class MainWindow(object):
@@ -274,13 +275,13 @@ class MainWindow(object):
 			self.newfamilyfile = False
 			return
 		else:
-			x = str(fam_data.datastruct)
+			x = json.dumps(fam_data.datastruct)
 			with open(self.f, 'w') as fobj:
 				fobj.write(x)
 
 	def saveas_to_disk(self):
 		
-		x = str(fam_data.datastruct) 
+		x = json.dumps(fam_data.datastruct)
 		print x
 
 		self.f = tkFileDialog.asksaveasfilename() 
@@ -294,7 +295,7 @@ class MainWindow(object):
 		self.make_datascreen()
 
 		with open(self.f, 'rb') as fobj:
-			x = eval(fobj.read())
+			x = json.loads(fobj.read())
 			for k,v in x.iteritems(): 
 				for gen in self.entry_controller:
 					for n in gen:
