@@ -42,9 +42,9 @@ class MainWindow(object):
 
 		self.filemenu = tk.Menu(self.menubar, tearoff=0)
 		self.menubar.add_cascade(label='File', menu = self.filemenu)
-		self.filemenu.add_command(label='Open', command=self.open_FAMILYfile)
-		self.filemenu.add_command(label='Save', command=self.save_to_disk)
-		self.filemenu.add_command(label='Save As', command=self.saveas_to_disk)
+		self.filemenu.add_command(label='Import', command=self.open_FAMILYfile)
+		self.filemenu.add_command(label='Export to JSON', command=self.save_to_disk)
+		self.filemenu.add_command(label='Extport to JSON As', command=self.saveas_to_disk)
 
 		self.helpmenu = tk.Menu(self.menubar, tearoff=0)
 		self.menubar.add_cascade(label='Help', menu = self.helpmenu)
@@ -291,8 +291,8 @@ class MainWindow(object):
 	def open_FAMILYfile(self):
 
 		self.f = tkFileDialog.askopenfilename()
-		self.datafields_frame.destroy()
-		self.make_datascreen()
+		#self.datafields_frame.destroy()
+		#self.make_datascreen()
 
 		with open(self.f, 'rb') as fobj:
 			x = json.loads(fobj.read())
@@ -306,7 +306,7 @@ class MainWindow(object):
 
 			fam_data.datastruct = x
 
-		new()
+		#new()
 
 class FamilyData(object):
 
